@@ -9,12 +9,28 @@ const { authenticate } = require('../middleware/auth');
 router.post('/register', async (req, res, next) => {
   try {
     const { username, password, role } = req.body;
+
+    // Pastikan semua field yang dibutuhkan ada
+    if (!username || !password || !role) {
+      return res.status(400).json({ message: 'Username, password, and role are required' });
+    }
+
+    // Cek apakah username sudah ada
+    const existingUser = await User.findOne({ where: { username } });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
+
+    // Buat user baru
     const newUser = await User.create({ username, password, role });
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    next(err);
+    console.error('Error creating user:', err); // Log error secara spesifik
+    res.status(500).json({ message: 'Failed to register user' });
   }
 });
+
+
 
 // Rute login
 router.post('/login', async (req, res, next) => {

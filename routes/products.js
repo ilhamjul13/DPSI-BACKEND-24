@@ -4,6 +4,7 @@ const router = express.Router();
 const Product = require('../models/product');
 const { authenticate, authorize } = require('../middleware/auth');
 
+
 // Endpoint untuk menambahkan produk baru
 router.post('/', authenticate, authorize(['admin']), async (req, res, next) => {
   try {
@@ -11,12 +12,13 @@ router.post('/', authenticate, authorize(['admin']), async (req, res, next) => {
     const newProduct = await Product.create({ productName, supplierID, categoryID, unit, price });
     res.status(201).json(newProduct);
   } catch (err) {
+    console.error(err);
     next(err);
   }
 });
 
 // Endpoint untuk menampilkan semua produk
-router.get('/', authenticate, async (req, res, next) => {
+router.get('/', authenticate, authorize(['admin']), async (req, res, next) => {
   try {
     const products = await Product.findAll();
     res.json(products);
@@ -26,7 +28,7 @@ router.get('/', authenticate, async (req, res, next) => {
 });
 
 // Endpoint untuk menampilkan produk berdasarkan ID
-router.get('/:id', authenticate, async (req, res, next) => {
+router.get('/:id', authenticate, authorize(['admin']), async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     if (product) {

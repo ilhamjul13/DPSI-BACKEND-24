@@ -1,4 +1,5 @@
 // models/shipper.js
+
 const { DataTypes } = require('sequelize');
 const sequelize = require('./index');
 
@@ -16,6 +17,8 @@ const Shipper = sequelize.define('Shipper', {
     type: DataTypes.STRING,
     allowNull: false
   }
+}, {
+  timestamps: false // Disable timestamps
 });
 
 module.exports = Shipper;

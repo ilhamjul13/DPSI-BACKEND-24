@@ -1,3 +1,4 @@
+// models/order.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('./index');
 
@@ -22,8 +23,9 @@ const Order = sequelize.define('Order', {
   shipperID: {
     type: DataTypes.INTEGER,
     allowNull: false
-  }}, {
-    timestamps: false // Menonaktifkan kolom createdAt dan updatedAt
+  }
+}, {
+  timestamps: false // Menonaktifkan kolom createdAt dan updatedAt jika tidak diperlukan
 });
 
 module.exports = Order;

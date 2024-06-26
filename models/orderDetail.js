@@ -1,4 +1,3 @@
-// models/orderDetail.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('./index');
 
@@ -20,6 +19,8 @@ const OrderDetail = sequelize.define('OrderDetail', {
     type: DataTypes.INTEGER,
     allowNull: false
   }
+}, {
+  timestamps: false // Menonaktifkan penggunaan createdAt dan updatedAt
 });
 
 module.exports = OrderDetail;

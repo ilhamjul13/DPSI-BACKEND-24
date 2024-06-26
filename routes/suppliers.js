@@ -12,6 +12,7 @@ router.post('/', authenticate, authorize(['admin']), async (req, res) => {
     const supplier = await Supplier.create({ supplierName, contactName, address, city, postalCode, country, phone });
     res.status(201).json(supplier);
   } catch (error) {
+    console.error(error); 
     res.status(400).json({ message: error.message });
   }
 });

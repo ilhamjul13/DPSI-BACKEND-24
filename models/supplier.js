@@ -1,5 +1,6 @@
+// models/supplier.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('./index');
+const sequelize = require('../models/index.js'); // pastikan jalur ini benar
 
 const Supplier = sequelize.define('Supplier', {
   supplierID: {
@@ -35,6 +36,9 @@ const Supplier = sequelize.define('Supplier', {
     type: DataTypes.STRING,
     allowNull: false
   }
+}, {
+  tableName: 'Suppliers',
+  timestamps: false,
 });
 
 module.exports = Supplier;

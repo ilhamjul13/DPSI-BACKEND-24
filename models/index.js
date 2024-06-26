@@ -1,10 +1,12 @@
 const { Sequelize } = require('sequelize');
 
 // Konfigurasi koneksi Sequelize
-const sequelize = new Sequelize('test', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql'
+const sequelize = new Sequelize('test', 'root', '123456', {
+  host: 'Joulejule',
+  dialect: 'mysql',
+  logging: console.log 
 });
+
 
 // Uji koneksi
 sequelize.authenticate()

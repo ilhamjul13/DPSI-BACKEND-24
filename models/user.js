@@ -1,9 +1,8 @@
-// models/user.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('./index');
 const bcrypt = require('bcryptjs');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('Users', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -18,10 +17,8 @@ const User = sequelize.define('User', {
     allowNull: false
   },
   profilePic: {
-  type: DataTypes.STRING
+    type: DataTypes.STRING
   }
-  
-
 }, {
   hooks: {
     beforeCreate: async (user) => {
